@@ -1,26 +1,18 @@
-import connection from '../configs/connectDB';
+import pool from '../configs/connectDB';
 
-let getHome = (req, res) => {
-  //logic
-  let data = [];
+let getHome = async (req, res) => {
 
-  connection.connect();
-  connection.query('SELECT * from `student`', function (error, results, fields) {
-    if (error) {
-      console.error(error);
-      return res.status(500).send('Internal Server Error');
-    }
+    const [rows, fields] = await pool.execute('SELECT * from `student`');
+    return res.render('index.ejs', {dataUser:rows });
 
-    if (results) {
-      data = results.map(row => {
-        return row;
-      });
-    }
-
-    return res.render('index.ejs', { dataUser:data });
-  });
 };
 
+let getRouter=async(req,res)=>{
+        let id=req.params.userId
+        let user=await pool.execute('SELECT * from `student` where `student_id`=?',[id]);
+        return res.send(JSON.stringify(user[0]))
+}
+
 module.exports = {
-  getHome
+  getHome,getRouter
 };
