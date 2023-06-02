@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nodejsbasic</title>
+    <link href="/css/styles.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+
+        <div class="create-user-container">
+            <form action="/Update-user" method="POST">
+                <div><b>Update user:</b></div>
+
+                <div>
+                    <label>Surname:</label>
+                    <input type="text" name="surname" value="<%=dataUser.surname%>" />
+                </div>
+                <div>
+                    <label>givennames:</label>
+                    <input type="text" name="givennames" value="<%=dataUser.given_names%>"/>
+                </div>
+                <div>
+                    <label>birthday:</label>
+                    <input type="text" name="birthday" value="<%=dataUser.date_of_birth%>"/>
+                </div>
+                <div>
+                    <label>year_encrolled:</label>
+                    <input type="text" name="year" value="<%=dataUser.year_encrolled%>"/>
+                </div>
+                <div>
+                    <input type="text" value="<%=dataUser.student_id%>"hidden name="id" />
+                    <button type="submit" class="btn-submit">Submit</button>
+                </div>
+
+            </form>
+
+        </div>
+</body>
+</html>

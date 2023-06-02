@@ -1,5 +1,5 @@
 import express from "express";
-import {getHome,getRouter, getCreateUser} from '../controller/homeController'
+import {getHome,getRouter, getCreateUser,postDeleteUser, getEditUser, postUpdateUser} from '../controller/homeController'
 
 let router=express.Router();
 
@@ -11,6 +11,9 @@ const initWebRouter=(app)=>{
       })
       app.get('/detail/user/:userId', getRouter)
       app.post('/create-new-user', getCreateUser)
+      app.post('/delete/user',postDeleteUser)
+      app.get('/edit/user/:userId',getEditUser)
+      app.post('/Update-user',postUpdateUser)
       return app.use('/',router)
 }
 

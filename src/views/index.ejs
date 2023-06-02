@@ -21,7 +21,6 @@
 
         <div class="w3-container">
             <h2>List users Table</h2>
-            <%=dataUser.length %>
             <table class="w3-table-all w3-hoverable">
                 <thead>
                     <tr class="w3-light-grey">
@@ -46,8 +45,13 @@
                             </td>
                             <td>
                                 <a href="/detail/user/<%= dataUser[i].student_id %>" target="_blank">Detail</a>
-                                <button type="button">Edit</button>
-                                <button type="button">Delete</button>
+                                <form action="/edit/user/<%= dataUser[i].student_id %>" method="get">
+                                    <button type="submit">Edit</button>
+                                </form>
+                                <form action="/delete/user" method="post" >
+                                    <input type="text" name="userId" value="<%= dataUser[i].student_id %>" hidden/>
+                                    <button type="submit">Delete</button>
+                                </form>
                             </td>
                         </tr>
                         <% } %>

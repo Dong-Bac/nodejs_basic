@@ -20,6 +20,26 @@ let getCreateUser=async(req,res)=>{
     return res.redirect('/')
 
 }
+
+let postDeleteUser=async(req, res)=>{
+    let {userId}=req.body
+    await pool.execute(`delete from student where student_id=?`,[userId])
+    return res.send("delete user")
+}
+
+let getEditUser=async(req,res)=>{
+    let id=req.params.userId
+    let [row,...prev]=await pool.execute(`select * from student where student_id=?`,[id])
+    return res.render('update.ejs',{dataUser:row[0]})
+}
+
+let postUpdateUser=async(req, res)=>{
+    let {surname,givennames,birthday,year,id}=req.body
+    await pool.execute(`update student set surname=?,given_names=?,date_of_birth=?,year_encrolled=? where student_id=? `,
+    [surname,givennames,birthday,year,id])
+    return res.redirect('/')
+}
+
 module.exports = {
-  getHome,getRouter,getCreateUser
+  getHome,getRouter,getCreateUser, postDeleteUser, getEditUser,postUpdateUser
 }
